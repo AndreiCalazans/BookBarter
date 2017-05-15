@@ -2,6 +2,9 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var bodyParser= require('body-parser');
+const cors = require('cors');
+const router = require('./router');
+const morgan = require('morgan');
 var app = express(); 
 var PORT = process.env.PORT || 3000;
 var mongoose = require('mongoose');
@@ -10,11 +13,13 @@ require('dotenv').config();
 
 // app.use(favicon(path.join(__dirname, 'dist/img', 'favicon.ico')));
 
+mongoose.connect('mongodb://localhost:bookBarter/bookDb');
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
+app.use(morgan('combined'));
 app.use(express.static('dist'));
 
 app.get('*.js', function (req, res, next) {
@@ -23,6 +28,7 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
+router(app);
 
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/dist/index.html');
