@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost:bookBarter/bookDb');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(express.static('dist'));
 
 app.get('*.js', function (req, res, next) {

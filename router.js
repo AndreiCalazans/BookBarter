@@ -23,4 +23,3 @@ module.exports = function(app) {
     app.get('/getBooksOnTrade' , requireAuth , HandleBooks.getBooksOnTrade);
 }
 
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1OTFhZmE4M2ZjYzUwYTY2NzVjNGM0MTciLCJpYXQiOjE0OTQ5NDEzMTIwNDd9.1CBudQ3cC9mLYJj5ElIz6U66_nwIU0Vyiw6--_A1zG0
