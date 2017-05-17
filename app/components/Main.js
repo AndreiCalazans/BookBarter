@@ -4,6 +4,7 @@ import Home from './Home';
 import Books from './Books';
 import Signin from './auth/signin';
 import Signup from './auth/signup';
+import Nav from './Nav';
 class Main extends React.Component {
 
 
@@ -11,6 +12,7 @@ class Main extends React.Component {
        
         return (
                 <div>
+                    <Nav></Nav>
                     <Route exact path='/' component={Home}></Route>
                     <Route path='/signin' component={Signin}></Route>
                     <Route path='/signup' component={Signup}></Route>
