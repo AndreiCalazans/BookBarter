@@ -1,6 +1,8 @@
 import React from 'react';
 import {Field , reduxForm } from 'redux-form';
 import {renderField} from './renderField';
+import * as actions from '../../actions';
+import {connect} from 'react-redux';
 
 const validate = values => {
     const errors = {}
@@ -11,21 +13,30 @@ const validate = values => {
     }
     if (!values.password) {
         errors.password = 'Required'
-    } else if (values.password.length < 5 ) {
+    }else if (values.password.length < 5 ) {
         errors.password = 'Minimum 5 characters please'
     }
     return errors
 }
 
 class Signin extends React.Component {
+
+
     submit(values) {
         console.log(values);
+        this.props.signinUser(values);
     }
     render() {
+        console.log(this.props);
         const {handleSubmit } = this.props;
         return (
             <div className='forms'>
-                <form className="form-horizontal col-sm-8 col-sm-offset-2" onSubmit={handleSubmit(this.submit)}>
+                <form className="form-horizontal col-sm-8 col-sm-offset-2" onSubmit={handleSubmit(this.submit.bind(this))}>
+                    {(this.props.auth.error.length > 0) &&
+                        <div className='form-group flex-center-box bg-danger'>
+                            <p style={{margin: "12px"}}>{this.props.auth.error}</p>
+                        </div>
+                    }
                     <Field name='email' type='email' component={renderField} label='Email' />
                     <Field name='password' type='password' component={renderField} label='Password' />                    
                     <div className="form-group">
@@ -39,10 +50,17 @@ class Signin extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
 
 Signin = reduxForm({
     form: 'signin',
     validate
-})(Signin);
+})(connect(mapStateToProps , actions )(Signin));
+
 
 export default Signin;

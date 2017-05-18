@@ -12,7 +12,6 @@ export function signinUser({email , password}) {
             .then( response => {
                 // if req is good
                 dispatch({type : AUTH_USER , payload : response.data })
-               console.log('it was good');
                 localStorage.setItem('user' , JSON.stringify(response.data));
                 //push back home
                 history.push('/');
@@ -36,6 +35,20 @@ export function authError(error) {
 
 export function signoutUser() {
     localStorage.removeItem('user');
-
      return { type: UNAUTH_USER}
+}
+
+export function signupUser({email , password , name , address, city , state , country }) {
+    return function(dispatch) {
+        axios.post(`${ROOT_URL}/signup` , {email , password , name , address, city , state , country })
+            .then( response => {
+                dispatch({type : AUTH_USER , payload : response.data })
+                localStorage.setItem('user' , JSON.stringify(response.data));
+                //push back home
+                history.push('/');
+            })
+            .catch( () => {
+                dispatch(authError('bad login info'));                
+            })
+    }
 }

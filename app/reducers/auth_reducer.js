@@ -1,6 +1,6 @@
 import { AUTH_USER , UNAUTH_USER, AUTH_ERROR } from '../actions/types';
 
-export default function(state={}, action) {
+export default function(state={ error: '' , authenticated: false}, action) {
     switch(action.type) {
         case AUTH_USER:
             return { ...state , error:'', authenticated: true , user: { ...action.payload }};

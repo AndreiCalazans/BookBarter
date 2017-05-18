@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
+import * as actions from '../actions';
 
 class Nav extends React.Component {
     renderLogControls() {
@@ -18,7 +19,7 @@ class Nav extends React.Component {
             <div>
                         <NavLink  to='/'>Home</NavLink>                        
                         <NavLink to='/signin'>Profile</NavLink>
-                        <NavLink to='/signup'>Sign Out</NavLink> 
+                        <a style={{cursor : 'pointer'}} onClick={() => {this.props.signoutUser()}}>Sign Out</a> 
                     
                 </div>
             )
@@ -36,7 +37,7 @@ class Nav extends React.Component {
             <div className='Nav'>
                <div className='top-nav'>
                    <div className='top-nav_div'>
-                        <p>Logo <i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
+                        <p><NavLink to='/'>Logo</NavLink> <i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
                    </div>
                    <div className="hidden-xs hidden-sm top-nav_div">
                         {this.renderLogControls()}
@@ -58,4 +59,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect( mapStateToProps )(Nav);
+export default connect( mapStateToProps , actions)(Nav);

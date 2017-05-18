@@ -1,6 +1,8 @@
 import React from 'react';
 import {Field , reduxForm} from 'redux-form';
 import {renderField} from './renderField';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 
 const validate = values => {
@@ -31,6 +33,7 @@ class Signup extends React.Component {
 
     submit(values) {
         console.log(values);
+        this.props.signupUser(values);
     }
 
     render() {
@@ -39,7 +42,12 @@ class Signup extends React.Component {
 
         return (
             <div className='forms'>
-                <form onSubmit={handleSubmit(this.submit)} className="form-horizontal col-sm-8 col-sm-offset-2">
+                <form onSubmit={handleSubmit(this.submit.bind(this))} className="form-horizontal col-sm-8 col-sm-offset-2">
+                 {(this.props.auth.error.length > 0) &&
+                        <div className='form-group flex-center-box bg-danger'>
+                            <p style={{margin: "12px"}}>{this.props.auth.error}</p>
+                        </div>
+                    }
                     <Field name='email' type='email' component={renderField} label='Email' />
                     <Field name='password' type='password' component={renderField} label='Password'/>
                     <Field name='name' type='text' component={renderField} label='Name' />
@@ -58,10 +66,16 @@ class Signup extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
 Signup = reduxForm({
     form: 'signup',
     validate
-})(Signup);
+})(connect( mapStateToProps , actions )(Signup));
 
 
 export default Signup;
