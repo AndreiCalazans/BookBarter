@@ -8,17 +8,17 @@ class Nav extends React.Component {
             return (
                 <div >
                         <NavLink  to='/'>Home</NavLink>                        
-                        <NavLink onClick={this.showSlider} to='/signin'>Sign In</NavLink>
-                        <NavLink onClick={this.showSlider} to='/signup'>Sign Up</NavLink> 
+                        <NavLink  to='/signin'>Sign In</NavLink>
+                        <NavLink to='/signup'>Sign Up</NavLink> 
             
                 </div>
             )
         } else {
             return (
             <div>
-                        <NavLink onClick={this.showSlider} to='/'>Home</NavLink>                        
-                        <NavLink onClick={this.showSlider} to='/signin'>Profile</NavLink>
-                        <NavLink onClick={this.showSlider} to='/signup'>Sign Out</NavLink> 
+                        <NavLink  to='/'>Home</NavLink>                        
+                        <NavLink to='/signin'>Profile</NavLink>
+                        <NavLink to='/signup'>Sign Out</NavLink> 
                     
                 </div>
             )
@@ -36,14 +36,13 @@ class Nav extends React.Component {
             <div className='Nav'>
                <div className='top-nav'>
                    <div className='top-nav_div'>
-                        <p>Logo <i ref='chevron' onClick={() => {this.showSlider()}} className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
+                        <p>Logo <i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
                    </div>
                    <div className="hidden-xs hidden-sm top-nav_div">
                         {this.renderLogControls()}
                    </div>
                </div> 
-               
-               <div ref='slider' className="navSlider hidden-md hidden-lg">
+               <div ref='slider' onClick={() => {this.showSlider()}} className="navSlider hidden-md hidden-lg">
                    
                     {this.renderLogControls()}
 
