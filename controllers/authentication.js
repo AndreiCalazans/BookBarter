@@ -14,6 +14,7 @@ exports.signin = function(req, res , next) {
     // just need to give them token
     const userAccount = {
                 token : tokenForUser(req.user),
+                id: req.user._id,
                 name: req.user.name,
                 address: req.user.address,
                 city: req.user.city,
@@ -62,6 +63,7 @@ exports.signup = function(req , res, next) {
     //repond to request indicating the user was created
             const userAccount = {
                 token : tokenForUser(user),
+                id: user._id,
                 name: user.name,
                 address: user.address,
                 city: user.city,

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "build": "webpack"
+    "dev": "webpack -w",
+    "build": "NODE_ENV='production' webpack"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,8 @@
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
-    "babel-preset-env": "^1.3.2",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "bcrypt-nodejs": "^0.0.3",
@@ -40,7 +42,7 @@
     "express": "^4.15.2",
     "history": "^4.6.1",
     "mongoose": "^4.9.5",
-    "react": "15.4.2",
+    "react": "15.5.4",
     "react-dom": "15.4.2",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",

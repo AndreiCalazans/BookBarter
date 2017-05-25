@@ -6,6 +6,9 @@ var extractPlugin = new ExtractTextPlugin({
   filename: 'main.css'
 });
 
+// const dev = process.env.NODE_ENV !== 'production' && process.argv.indexOf('-p') === -1;
+const dev = process.env.NODE_ENV !== 'production' ;
+
 module.exports = {
   entry: './app/index.js',
   output: {
@@ -20,7 +23,7 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         query: {
-              presets: ['es2015', 'react', 'stage-1']
+              presets: ['babel-preset-env' , 'react' , ["env", {"modules": false}]]
            },
         },
       },
@@ -44,7 +47,10 @@ module.exports = {
               }
     ]
   },
-  plugins: [
+ 
+
+
+  plugins: dev ? [extractPlugin ] : [
     extractPlugin,
      new webpack.DefinePlugin({ // <-- key to reducing React's size
       'process.env': {
@@ -62,5 +68,5 @@ module.exports = {
     })
 
   ],
-devtool: 'cheap-module-eval-source-map'
+devtool:  dev ? 'cheap-module-eval-source-map' : ''
 }

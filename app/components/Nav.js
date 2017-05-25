@@ -47,7 +47,7 @@ class Nav extends React.Component {
                    
                     {this.renderLogControls()}
 
-               </div> 
+               </div>   
             </div>
         )
     }
