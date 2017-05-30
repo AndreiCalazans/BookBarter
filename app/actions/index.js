@@ -33,6 +33,14 @@ export function authError(error) {
     }
 }
 
+export function authUser(userInfo) {
+    localStorage.setItem('user' , JSON.stringify(userInfo));    
+    return { 
+        type: AUTH_USER , 
+        payload: userInfo
+    }
+}
+
 export function signoutUser() {
     localStorage.removeItem('user');
      return { type: UNAUTH_USER}
@@ -63,7 +71,8 @@ export function updateUser(user) {
             data: user
         })
         .then((res) => {
-            return dispatch(alertMsg(res.data));
+            dispatch(authUser(res.data));
+            return dispatch(alertMsg('User was updated'));
         })
         .catch((res) => {
             return dispatch(alertMsg(res.data));

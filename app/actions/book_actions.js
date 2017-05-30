@@ -1,6 +1,6 @@
 import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES , DELETE_BOOK } from './types';
 import axios from 'axios';
-
+import history from '../history';
 const ROOT_URL = 'http://localhost:3000';
 
 
@@ -34,6 +34,7 @@ export function addBook(book) {
             .then( response => {
                 // not making a second dispatch returning action directly from here ...
                 console.log('success');
+                history.push('/books');
                 return dispatch({
                     type: ADD_BOOK,
                     alertMsg: 'Book Saved!'

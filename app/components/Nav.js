@@ -45,6 +45,7 @@ class Nav extends React.Component {
                         :
                         null 
                         }
+                        <NavLink className='hidden-md hidden-lg' to='/books'>Books</NavLink> 
                         
                    </div>
                    <div className="hidden-xs hidden-sm top-nav_div">

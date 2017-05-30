@@ -87,11 +87,20 @@ exports.updateUser = function(req , res , next) {
         user.city = city;
         user.state = state;
         user.country = country;
+        user.name = name;
 
         user.save(function(err) {
             if (err) res.send('there was an error with saving');
-
-            res.send('User updated');
+              const userAccount = {
+                token : tokenForUser(user),
+                id: user._id,
+                name: user.name,
+                address: user.address,
+                city: user.city,
+                state: user.state,
+                country: user.country
+            }
+            res.send(userAccount);
         }) 
     })
 }
