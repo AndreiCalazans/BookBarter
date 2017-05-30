@@ -6,7 +6,7 @@ import {reducer as formReducer } from 'redux-form';
 const rootReducer = combineReducers({
   auth: authReducer,
   form: formReducer,
-  books: booksReducer
+  handleBooks: booksReducer
 });
 
 export default rootReducer;

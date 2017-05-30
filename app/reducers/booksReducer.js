@@ -1,4 +1,4 @@
-import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES } from '../actions/types';
+import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES, DELETE_BOOK} from '../actions/types';
 
 
 const preState = {
@@ -29,6 +29,14 @@ export default function ( state = preState , action) {
             return {
                 ...state,
                 alertMsg: action.alertMsg
+            }
+        case DELETE_BOOK:
+            let newState = state.books.filter((book) => {
+                return book._id != action.id
+            });
+            return {
+                ...state,
+                books: newState
             }
     }
     return state;

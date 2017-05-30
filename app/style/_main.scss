@@ -1,0 +1,17 @@
+.alert_msg {
+    position: fixed;
+    min-width: 200px;
+    z-index: 500;
+    
+    font-weight: bold;
+    background: rgba(245, 107, 107, 0.9);
+    right: 20px;
+    top: 20px;
+    p {
+        text-align: center;
+        padding: 10px;
+    }
+    span {
+        padding: 5px;
+    }
+}

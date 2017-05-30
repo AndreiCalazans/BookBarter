@@ -3,14 +3,24 @@ import {Field , reduxForm } from 'redux-form';
 import {renderField } from './auth/renderField';
 import {connect } from 'react-redux';
 import * as actions from '../actions/book_actions';
-
+import history from '../history';
 import AlertMsg from './stateless/AlertMsg';
+
+var validate = values => {
+    const errors = {}
+    const inputs = ['name', 'img_url', 'rating'];
+    inputs.forEach((e) => {
+        if(!values[e]) { errors[e] = 'Required'}
+    })
+
+
+    return errors;
+}
 
 
 class BookAdder extends React.Component {
     constructor(props) {
         super(props);
-        this.hideMsg = this.hideMsg.bind(this); 
     }
     
     submit(values) {
@@ -28,15 +38,13 @@ class BookAdder extends React.Component {
 
     //make action call to state
     this.props.addBook(book);
-    this.hideMsg();
     }
 
-    hideMsg() {
-        //hide msg after 3 secs.
-        // this is a hack to empty the current error msg after a few seconds and hide it.
-        setTimeout(() => {
-            this.props.alertMsg('');
-        }, 3000)
+    componentWillMount() {
+        if (!this.props.auth.authenticated) {
+            this.props.alertMsg('User must be sign in to add a book');
+            history.push('/signin');
+        }
     }
 
     render(){
@@ -44,9 +52,7 @@ class BookAdder extends React.Component {
 
         return (
         <div className='book_adder'>
-            {/*to control the alert check to see the size of the alert msg if 0 then dont show.*/}
-            <AlertMsg show={this.props.books.alertMsg.length > 0 ? true : false} msg={this.props.books.alertMsg} ></AlertMsg>
-            <p className="title">Add a book!</p>
+            <p className="title container">Add a book!</p>
             <form onSubmit={handleSubmit(this.submit.bind(this))} className='form-horizontal col-sm-8 col-sm-offset-2'>
                 <Field name='name' type='text' component={renderField} label='Name' />
                 <Field name='img_url' type='text' component={renderField} label='Image Url' />
@@ -54,7 +60,7 @@ class BookAdder extends React.Component {
             
                  <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
-                        <button type="submit" className="btn btn-default">Sign in</button>
+                        <button type="submit" className="btn btn-default">Add a book</button>
                         </div>
                     </div>
             </form>
@@ -64,14 +70,12 @@ class BookAdder extends React.Component {
 
 
 function mapStateToProps(state) {
-    return {
-        books: state.books,
-        auth: state.auth
-    }
+    return state
 }
 
 BookAdder = reduxForm({
-    form: 'BookAdder'
+    form: 'BookAdder',
+    validate
 })(connect( mapStateToProps , actions)(BookAdder));
 
 

@@ -47,15 +47,14 @@ exports.signup = function(req , res, next) {
             return res.status(422).send({error: 'Email is in user'});
         }
     //if a user with email does not exist, create and save user record
-        const user = new User({
-            email: email,
-            password: password,
-            name: name,
-            address: address,
-            city: city,
-            state: state,
-            country: country
-        });
+        const user = new User();
+        user.email = email;
+        user.password = user.encryptPassword(password);
+        user.name = name;
+        user.address= address;
+        user.city = city;
+        user.state = state;
+        user.country = country;
 
         user.save(function(err) {
             if (err) {return next(err);}

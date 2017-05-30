@@ -20,7 +20,12 @@
 .top-nav_div {
     padding:20px;
     flex-grow:1;
-
+}
+.logo_container {
+     display:inherit;
+    * {
+        padding:5px;
+    } 
 }
 .navSlider {
     position: fixed;
@@ -43,7 +48,8 @@
    
 }
 .show-slider {
-    top: 10%;
+    top: 0;
+    padding-top: 20%;
 }
 .fa-chevron-down {
     transition: 1s all;

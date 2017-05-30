@@ -18,11 +18,10 @@ class Nav extends React.Component {
             return (
             <div>
                         <NavLink  to='/'>Home</NavLink>                        
-                        <NavLink to='/signin'>Profile</NavLink>
+                        <NavLink to='/profile'>Profile</NavLink>
                         <a style={{cursor : 'pointer'}} onClick={() => {this.props.signoutUser()}}>Sign Out</a>
                         <NavLink to='/books'>Books</NavLink>
                         
-                    
                 </div>
             )
         }
@@ -38,8 +37,15 @@ class Nav extends React.Component {
         return (
             <div className='Nav'>
                <div className='top-nav'>
-                   <div className='top-nav_div'>
-                        <p><NavLink to='/'>Logo</NavLink> <i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
+                   <div className='top-nav_div logo_container'>
+                        <NavLink to='/'>Logo</NavLink> 
+                        <p><i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down hidden-md hidden-lg" aria-hidden="true"></i></p>
+                        { this.props.auth.authenticated ? 
+                            <NavLink to='/bookadder'>Add a Book</NavLink> 
+                        :
+                        null 
+                        }
+                        
                    </div>
                    <div className="hidden-xs hidden-sm top-nav_div">
                         {this.renderLogControls()}

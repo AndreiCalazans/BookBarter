@@ -27,7 +27,6 @@ class Signin extends React.Component {
         this.props.signinUser(values);
     }
     render() {
-        console.log(this.props);
         const {handleSubmit } = this.props;
         return (
             <div className='forms'>

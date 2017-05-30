@@ -22,10 +22,11 @@ exports.addBook = function(req, res , next ) {
 };
 
 exports.deleteBook = function(req , res, next) {
+    console.log(req.body.id);
     Book.findByIdAndRemove(req.body.id , function(err) {
         if (err) res.send('there was an error');
 
-        res.send('book deleted');
+        res.send('book deleted!');
     })
 }
 

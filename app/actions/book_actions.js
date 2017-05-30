@@ -1,4 +1,4 @@
-import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES } from './types';
+import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES , DELETE_BOOK } from './types';
 import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:3000';
@@ -8,7 +8,7 @@ export function getBooks() {
     return function(dispatch) {
         axios.get(`${ROOT_URL}/getAllBooks`)
             .then( response => {
-                dispatch({
+                return dispatch({
                     type: GET_BOOKS,
                     books: response.data
                 });
@@ -55,16 +55,23 @@ export function alertMsg(alertMsg) {
 }
 
 export function deleteBook(id) {
+    
     return function(dispatch) {
         axios({
             method:'POST',
             url:`${ROOT_URL}/deleteBook`,
             // get user jwtoken in local storage its inside user , dont forget to parse it.
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
-            data: id
+            data: {
+                id
+            }
         })
             .then((res) => {
-                dispatch(alertMsg(res.data));
+                dispatch({
+                    type: DELETE_BOOK,
+                    id
+                });
+               return dispatch(alertMsg(res.data));
             })
             .catch((res) => {
                 dispatch(alertMsg("Couldn't delete this book!"));
@@ -91,7 +98,7 @@ export function requestTrade(book){
             data: book
         })
             .then((res) => {
-                dispatch(alertMsg(res.data));
+                return dispatch(alertMsg(res.data));
             })
             .catch((res) => {
                 dispatch(alertMsg("Couldn't make this request"));
@@ -107,10 +114,10 @@ export function deleteTrade(id) {
             url:`${ROOT_URL}/deleteTrade`,
             // get user jwtoken in local storage its inside user , dont forget to parse it.
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
-            data: id
+            data: {id}
         })
             .then((res) => {
-                dispatch(alertMsg('Deleted this trade'));
+                return dispatch(alertMsg('Deleted this trade'));
             })
             .catch((res) => {
                 dispatch(alertMsg('There was an problem with deleting this trade'));
@@ -125,10 +132,10 @@ export function acceptTrade(id) {
             url:`${ROOT_URL}/acceptTrade`,
             // get user jwtoken in local storage its inside user , dont forget to parse it.
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
-            data: id
+            data: {id}
         })
             .then((res) => {
-                dispatch(alertMsg(res.data));
+                return dispatch(alertMsg(res.data));
             })
             .catch((res) => {
                 dispatch(alertMsg("Coudn't accept this trade"));
@@ -145,7 +152,7 @@ export function getBooksOnTrade() {
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token}
         })
             .then((res) => {
-                dispatch({
+                return dispatch({
                     type: GET_TRADES,
                     payload: res.data
                 })

@@ -2,6 +2,7 @@
 
 @import './nav';
 @import './books';
+@import './main';
 
 *, *:before ,*:after {
     margin:0;
@@ -19,4 +20,9 @@ html {
 
 .forms {
     margin: 20px;
+}
+
+.highlighted {
+    color: red;
+    font-weight: bold;
 }

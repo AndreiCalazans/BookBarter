@@ -4,7 +4,24 @@
     flex-wrap: wrap;
 }
 .book_holder {
+    
     width: 150px;
     flex-grow:1;
     margin: 10px;
+    @extend .flex-center-box;
+    flex-direction: column;
+
+}
+.img-responsive {
+    height: 200px;
+}
+.img_holder {
+    position:relative;
+}
+.delete {
+    font-weight: bold;
+    position:absolute;
+    right: 15px;
+    bottom: 5px;
+    color: red;
 }
