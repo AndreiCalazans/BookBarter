@@ -16,7 +16,8 @@
 
 .top-nav_div {
   padding: 20px;
-  flex-grow: 1; }
+  flex-grow: 1;
+  text-align: right; }
 
 .logo_container {
   display: inherit; }
@@ -91,7 +92,7 @@
   .nav_filter p {
     padding: 13px 30px;
     display: inline;
-    margin: 30px;
+    margin: 14px;
     font-size: 16px;
     cursor: pointer;
     user-select: none; }

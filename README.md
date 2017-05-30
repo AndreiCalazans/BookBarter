@@ -1,9 +1,13 @@
     BookBarter , A book trading club.
 
-    Running on Node and  npm.
-
     git clone or fork and npm install then run npm start .
 
+        to run dev use npm dev
+        for production npm build
+
+    This app uses
+
+    Node , Express , MongoDB , React and Redux
 
 
 

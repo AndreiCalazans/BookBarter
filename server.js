@@ -13,7 +13,8 @@ require('dotenv').config();
 
 // app.use(favicon(path.join(__dirname, 'dist/img', 'favicon.ico')));
 
-mongoose.connect('mongodb://localhost:bookBarter/bookDb');
+// mongoose.connect('mongodb://localhost:bookBarter/bookDb');
+mongoose.connect('mongodb://andrei:12345@ds157571.mlab.com:57571/book_barter');
 
 
 app.use(bodyParser.urlencoded({extended: true}));

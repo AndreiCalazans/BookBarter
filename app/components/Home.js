@@ -10,8 +10,9 @@ class Home extends React.Component {
 
     render() {
         return (
-        <div>
-            <h1>Home</h1>
+        <div className='container'>
+            <h1>Book Barter, a book trading app</h1>
+            <p>Trade your books and never stop reading</p>
         </div>
         )
     }

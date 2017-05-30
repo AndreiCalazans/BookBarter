@@ -14,7 +14,9 @@ class Books extends React.Component {
 
     componentWillMount() {
         this.props.getBooks();
-        this.props.getBooksOnTrade();
+        if(this.props.auth.authenticated) {
+            this.props.getBooksOnTrade();
+        }
     }
 
     deleteBook(bookId) {
