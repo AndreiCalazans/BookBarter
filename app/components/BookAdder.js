@@ -35,7 +35,7 @@ class BookAdder extends React.Component {
         //hide msg after 3 secs.
         // this is a hack to empty the current error msg after a few seconds and hide it.
         setTimeout(() => {
-            this.props.alertError('');
+            this.props.alertMsg('');
         }, 3000)
     }
 

@@ -11,7 +11,7 @@ class Nav extends React.Component {
                         <NavLink  to='/'>Home</NavLink>                        
                         <NavLink  to='/signin'>Sign In</NavLink>
                         <NavLink to='/signup'>Sign Up</NavLink> 
-            
+                        <NavLink to='/books'>Books</NavLink>
                 </div>
             )
         } else {
@@ -19,7 +19,9 @@ class Nav extends React.Component {
             <div>
                         <NavLink  to='/'>Home</NavLink>                        
                         <NavLink to='/signin'>Profile</NavLink>
-                        <a style={{cursor : 'pointer'}} onClick={() => {this.props.signoutUser()}}>Sign Out</a> 
+                        <a style={{cursor : 'pointer'}} onClick={() => {this.props.signoutUser()}}>Sign Out</a>
+                        <NavLink to='/books'>Books</NavLink>
+                        
                     
                 </div>
             )

@@ -22,7 +22,7 @@ exports.addBook = function(req, res , next ) {
 };
 
 exports.deleteBook = function(req , res, next) {
-    Book.findByIdAndRemove(req.body._id, function(err) {
+    Book.findByIdAndRemove(req.body.id , function(err) {
         if (err) res.send('there was an error');
 
         res.send('book deleted');
@@ -57,7 +57,8 @@ exports.requestTrade = function( req , res , next) {
 }
 
 exports.acceptTrade = function(req , res , next) {
-   var requestedBookId = req.body._id;
+    // send trade id not book id.!!!!!
+   var requestedBookId = req.body.id;
    BooksOnTrade.findById( requestedBookId , function(err , book) {
        // flip onTrade boolean
        if(err) res.status(404).send('there was a problem with accepting');
@@ -71,7 +72,8 @@ exports.acceptTrade = function(req , res , next) {
 }
 
 exports.deleteTrade = function(req , res ,next ) {
-    BooksOnTrade.findByIdAndRemove( req.body._id , function(err) {
+    // id of the request trade element in the DB
+    BooksOnTrade.findByIdAndRemove( req.body.id , function(err) {
         if (err) res.status(404).send('there was problem with deleting');
 
         res.send('trade finished therefore deleted');

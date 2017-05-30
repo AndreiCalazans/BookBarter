@@ -43,6 +43,15 @@
 .rotate-chevron {
   transform: rotate(180deg); }
 
+.book_container {
+  display: flex;
+  flex-wrap: wrap; }
+
+.book_holder {
+  width: 150px;
+  flex-grow: 1;
+  margin: 10px; }
+
 *, *:before, *:after {
   margin: 0; }
 
