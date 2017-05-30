@@ -19,7 +19,6 @@ class Profile extends React.Component {
 
 
     submit(values) {
-        console.log(values);
         this.props.updateUser(values);
     }
     componentDidMount() {

@@ -1,7 +1,7 @@
 import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES , DELETE_BOOK  , BOOKS_ON_TRADE} from './types';
 import axios from 'axios';
 import history from '../history';
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = 'https://andrei-bookbarter.herokuapp.com';
 
 
     // *********************************
@@ -22,7 +22,7 @@ export function getBooks() {
                 });
             })
             .catch((res) => {
-                console.log('There was an error fetching books: ', res);
+                dispatch(alertMsg('Error with fetching books'))
             })
     }
 };
@@ -31,7 +31,6 @@ export function getBooks() {
 export function addBook(book) {
     return function(dispatch) {
         // book must be an object with info the book!
-        console.log( JSON.parse(localStorage.getItem('user')).token);
         axios({
             method:'POST',
             url:`${ROOT_URL}/addBook`,
@@ -41,7 +40,6 @@ export function addBook(book) {
         })
             .then( response => {
                 // not making a second dispatch returning action directly from here ...
-                console.log('success');
                 history.push('/books');
                 return dispatch({
                     type: ADD_BOOK,
@@ -49,7 +47,6 @@ export function addBook(book) {
                 })
             })
             .catch( response => {
-                console.log('error');
                return dispatch(alertMsg('There was an error with adding this book!'))
             })
     }

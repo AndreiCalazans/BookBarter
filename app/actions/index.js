@@ -3,7 +3,7 @@ import history from '../history';
 import {alertMsg} from './book_actions';
 import {AUTH_USER, AUTH_ERROR , UNAUTH_USER } from './types';
 
-const ROOT_URL = 'http://localhost:3000';
+const ROOT_URL = 'https://andrei-bookbarter.herokuapp.com';
 
 
 export function signinUser({email , password}) {

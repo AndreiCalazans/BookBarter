@@ -24,8 +24,6 @@ class BookAdder extends React.Component {
     }
     
     submit(values) {
-        console.log(values);
-        console.log(this.props);
         // make the new book object
     let book = {
         name: values.name,

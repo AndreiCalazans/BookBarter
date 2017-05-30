@@ -4,7 +4,6 @@ const BooksOnTrade = require('../models/booksOnTrade');
 
 exports.addBook = function(req, res , next ) {
     // you have access to req.user because of requireAuth
-    console.log('i was called from the book land');
     let newBook = new Book({
         name: req.body.name,
         img_url: req.body.img_url,
@@ -22,7 +21,6 @@ exports.addBook = function(req, res , next ) {
 };
 
 exports.deleteBook = function(req , res, next) {
-    console.log(req.body.id);
     Book.findByIdAndRemove(req.body.id , function(err) {
         if (err) res.send('there was an error');
 
@@ -60,7 +58,6 @@ exports.requestTrade = function( req , res , next) {
 exports.acceptTrade = function(req , res , next) {
     // send trade id not book id.!!!!!
    var requestedBookId = req.body.id;
-   console.log(requestedBookId);
    BooksOnTrade.findById( requestedBookId , function(err , book) {
        // flip onTrade boolean
        if(err) res.status(404).send('there was a problem with accepting');

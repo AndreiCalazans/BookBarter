@@ -40,12 +40,10 @@ class Books extends React.Component {
     }
 
     deleteTrade(tradeId) {
-        console.log('deleteTrade: ' , tradeId);
         this.props.deleteTrade(tradeId);
     }
     
     acceptTrade(tradeId){
-        console.log('accept trade: ' , tradeId);
         this.props.acceptTrade(tradeId);
     }
 

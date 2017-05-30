@@ -32,7 +32,6 @@ const validate = values => {
 class Signup extends React.Component {
 
     submit(values) {
-        console.log(values);
         this.props.signupUser(values);
     }
 
