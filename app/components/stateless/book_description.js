@@ -9,7 +9,7 @@ export default function Book_description(props) {
                 {props.onTrade ? 
                     <p className='highlighted'>Currently on Trade</p>:
                     
-                    <button 
+                    <button className='btn btn-info'
                     onClick={() => {
                        props.handleRequest(props) }}
                         >Request trade btn</button>

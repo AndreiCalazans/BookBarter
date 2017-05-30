@@ -61,6 +61,11 @@
   .book_holder div:nth-child(2) {
     flex-direction: column;
     align-items: flex-start !important; }
+    .book_holder div:nth-child(2) div {
+      width: 100%;
+      text-align: center; }
+      .book_holder div:nth-child(2) div button {
+        margin: 5px; }
 
 .sub_title {
   height: 30px;
@@ -94,6 +99,9 @@
 .filter_active {
   border-bottom: 3px solid #d49494;
   font-weight: bold; }
+
+.badge {
+  background-color: red !important; }
 
 .alert_msg {
   position: fixed;

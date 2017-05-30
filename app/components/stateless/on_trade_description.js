@@ -10,7 +10,7 @@ export default function On_trade_description(props) {
                 {props.createdById == props.currentUser ? 
                 
                     <div>
-                    <button  onClick={() => {
+                    <button className='btn btn-info'  onClick={() => {
                         props.handleDeleteOfTrade(props.id)
                         }}
                         >Finish Trade</button> 

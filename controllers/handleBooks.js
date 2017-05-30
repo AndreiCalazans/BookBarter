@@ -86,6 +86,13 @@ exports.deleteTrade = function(req , res ,next ) {
 exports.getBooksOnTrade = function(req , res) {
     BooksOnTrade.find({} , function(err , books ) {
         if (err) res.status(404).send('problem with finding books');
-        res.json(books);
+
+        let booksToReturn = books.filter(function(e) {
+            if((e.requestedById == req.user._id) || (e.createdById == req.user._id)) {
+                return true
+            } 
+        })
+
+        res.json(booksToReturn);
     })
 }

@@ -99,7 +99,7 @@ class Books extends React.Component {
             <div>
                 <div className="nav_filter">
                     <p ref='all' onClick={() => { this.changeFilter('all')}} className='filter_active'>All</p>
-                    <p ref='trades' onClick={() => { this.changeFilter('trades')}}>Your Trades</p>
+                    <p ref='trades' onClick={() => { this.changeFilter('trades')}}>Your Trades <span className="badge">{this.props.trades.length}</span></p>
                 </div>
 
                 {this.state.filterToShow === 'all' ?  

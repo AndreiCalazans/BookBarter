@@ -10,9 +10,12 @@ export default function Book_process_description(props) {
                 {props.createdById == props.currentUser ? 
                 
                     <div>
-                    <button onClick={() => {
+                    <button className='btn btn-info' onClick={() => {
                         props.handleAcceptTrade(props.id)}}
                         >Accept</button> 
+                        <button className='btn btn-danger' onClick={() => {
+                        props.handleDeleteOfTrade(props.id)}}
+                        >Decline</button> 
                     </div>
                     :
                     <p className="sub_title"><strong>Waiting for response</strong></p>
