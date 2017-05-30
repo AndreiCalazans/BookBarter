@@ -20,6 +20,6 @@ module.exports = function(app) {
     app.post('/requestTrade', requireAuth , HandleBooks.requestTrade);
     app.post('/acceptTrade',requireAuth , HandleBooks.acceptTrade);
     app.post('/deleteTrade', requireAuth , HandleBooks.deleteTrade);
-    app.get('/getBooksOnTrade' , requireAuth , HandleBooks.getBooksOnTrade);
+    app.get('/booksOnTrade' , requireAuth , HandleBooks.getBooksOnTrade);
 }
 

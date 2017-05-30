@@ -1,7 +1,15 @@
-import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES , DELETE_BOOK } from './types';
+import { GET_BOOKS , ADD_BOOK , ALERT_MSG , GET_TRADES , DELETE_BOOK  , BOOKS_ON_TRADE} from './types';
 import axios from 'axios';
 import history from '../history';
 const ROOT_URL = 'http://localhost:3000';
+
+
+    // *********************************
+    // *         HANDLING BOOKS        *
+    // *                               *
+    // *                               *
+    // *********************************
+
 
 
 export function getBooks() {
@@ -80,6 +88,17 @@ export function deleteBook(id) {
     }
 }
 
+
+    // *********************************
+    // *         HANDLING TRADES       *
+    // *                               *
+    // *                               *
+    // *********************************
+
+
+
+
+//request trade must send info on the book in an object form!!!
 // book must be an object containing info from the book like
 // book = {
 //     name,
@@ -88,8 +107,7 @@ export function deleteBook(id) {
 //     createdBy,
 //     createdById
 // }
-
-export function requestTrade(book){
+export function requestTrade(book) {
     return function(dispatch) {
         axios({
             method:'POST',
@@ -99,47 +117,58 @@ export function requestTrade(book){
             data: book
         })
             .then((res) => {
+                // should return an text with success.
+                //get books on trade again to update the dom
+                dispatch(getBooksOnTrade());               
                 return dispatch(alertMsg(res.data));
             })
             .catch((res) => {
-                dispatch(alertMsg("Couldn't make this request"));
+                dispatch(alertMsg('There was a problem with making this request'));
             });
     }
 }
 
-// to delete the trade send id of the element in the db of trade.
-export function deleteTrade(id) {
-    return function(dispatch) {
-        axios({
-            method:'POST',
-            url:`${ROOT_URL}/deleteTrade`,
-            // get user jwtoken in local storage its inside user , dont forget to parse it.
-            headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
-            data: {id}
-        })
-            .then((res) => {
-                return dispatch(alertMsg('Deleted this trade'));
-            })
-            .catch((res) => {
-                dispatch(alertMsg('There was an problem with deleting this trade'));
-            });
-    }
-}
-
-export function acceptTrade(id) {
+export function acceptTrade(idOfTrade) {
     return function(dispatch) {
         axios({
             method:'POST',
             url:`${ROOT_URL}/acceptTrade`,
             // get user jwtoken in local storage its inside user , dont forget to parse it.
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
-            data: {id}
+            data: {
+                id: idOfTrade
+            }
         })
             .then((res) => {
+                //get books on trade again to update the dom                
+                dispatch(getBooksOnTrade());                
                 return dispatch(alertMsg(res.data));
             })
             .catch((res) => {
-                dispatch(alertMsg("Coudn't accept this trade"));
+                return dispatch(alertMsg(res.data));
+            });
+
+    }
+}
+
+export function deleteTrade(idOfTrade) {
+    return function(dispatch) {
+        axios({
+            method:'POST',
+            url:`${ROOT_URL}/deleteTrade`,
+            // get user jwtoken in local storage its inside user , dont forget to parse it.
+            headers: {authorization: JSON.parse(localStorage.getItem('user')).token},
+            data: {
+                id: idOfTrade
+            }
+        })
+            .then((res) => {
+                //get books on trade again to update the dom                
+                dispatch(getBooksOnTrade());
+                return dispatch(alertMsg(res.data));
+            })
+            .catch((res) => {
+                return dispatch(alertMsg(res.data));
             });
     }
 }
@@ -148,18 +177,24 @@ export function getBooksOnTrade() {
     return function(dispatch) {
         axios({
             method:'GET',
-            url:`${ROOT_URL}/getBooksOnTrade`,
+            url:`${ROOT_URL}/booksOnTrade`,
             // get user jwtoken in local storage its inside user , dont forget to parse it.
             headers: {authorization: JSON.parse(localStorage.getItem('user')).token}
         })
             .then((res) => {
-                return dispatch({
-                    type: GET_TRADES,
-                    payload: res.data
-                })
+                return dispatch(booksOnTrade(res.data));
             })
             .catch((res) => {
-                dispatch(alertMsg("Coudln't get books on trade"));
+                return dispatch(alertMsg(res.data));
             });
     }
 }
+
+export function booksOnTrade(trades) {
+    return {
+        type: BOOKS_ON_TRADE,
+        trades
+    }
+}
+
+

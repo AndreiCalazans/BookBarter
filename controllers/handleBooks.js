@@ -60,9 +60,11 @@ exports.requestTrade = function( req , res , next) {
 exports.acceptTrade = function(req , res , next) {
     // send trade id not book id.!!!!!
    var requestedBookId = req.body.id;
+   console.log(requestedBookId);
    BooksOnTrade.findById( requestedBookId , function(err , book) {
        // flip onTrade boolean
        if(err) res.status(404).send('there was a problem with accepting');
+       book.onTrade = true;
        book.accepted = true;
        book.save(function(err) {
            if (err) throw err;
