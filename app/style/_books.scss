@@ -2,11 +2,11 @@
 .book_container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .book_holder {
     
     width: 150px;
-    flex-grow:1;
     margin: 10px;
     @extend .flex-center-box;
     flex-direction: column;

@@ -12,7 +12,7 @@ export default function Book_description(props) {
                     <button className='btn btn-info'
                     onClick={() => {
                        props.handleRequest(props) }}
-                        >Request trade btn</button>
+                        >Request trade</button>
                     }
         </div>
     )

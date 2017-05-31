@@ -22,7 +22,7 @@
 .logo_container {
   display: inherit; }
   .logo_container * {
-    padding: 5px; }
+    padding: 0 5px 5px 5px; }
 
 .navSlider {
   position: fixed;
@@ -52,11 +52,11 @@
 
 .book_container {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: center; }
 
 .book_holder {
   width: 150px;
-  flex-grow: 1;
   margin: 10px;
   flex-direction: column; }
   .book_holder div:nth-child(2) {
@@ -117,6 +117,21 @@
     padding: 10px; }
   .alert_msg span {
     padding: 5px; }
+
+.logo_intro {
+  font-weight: 900;
+  color: teal; }
+
+.outer_holder {
+  width: 100%;
+  height: 380px;
+  overflow-x: scroll;
+  overflow-y: hidden; }
+  .outer_holder .book_container {
+    width: 1200px; }
+
+.see_all {
+  text-align: right; }
 
 *, *:before, *:after {
   margin: 0; }

@@ -38,7 +38,7 @@ class Nav extends React.Component {
             <div className='Nav'>
                <div className='top-nav'>
                    <div className='top-nav_div logo_container'>
-                        <NavLink to='/'>Logo</NavLink> 
+                        <NavLink to='/'><img src={require('../images/bookBarterLogo.png')} alt="book barter logo"/></NavLink> 
                         { this.props.auth.authenticated ? 
                             <NavLink to='/bookadder'>Add a Book</NavLink> 
                         :
@@ -50,7 +50,7 @@ class Nav extends React.Component {
                    <div className="hidden-xs hidden-sm top-nav_div">
                         {this.renderLogControls()}
                    </div>
-               <div className="top-nav_div hidden-md hidden-lg"> <p><i onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down fa-2x hidden-md hidden-lg" aria-hidden="true"></i></p></div>
+               <div className="top-nav_div hidden-md hidden-lg"> <p><i style={{color: 'teal'}} onClick={()=> {this.showSlider() }} ref='chevron' className="fa fa-chevron-down fa-2x hidden-md hidden-lg" aria-hidden="true"></i></p></div>
                    
                </div> 
                <div ref='slider' onClick={() => {this.showSlider()}} className="navSlider hidden-md hidden-lg">

@@ -1,0 +1,20 @@
+
+.logo_intro {
+    font-weight: 900;
+    color:teal;
+}
+
+.outer_holder {
+    width:100%;
+    height:380px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    .book_container {
+        width:1200px;
+    }
+}
+
+.see_all {
+    text-align: right;
+}

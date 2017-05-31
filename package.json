@@ -11,9 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-   
-  },
   "dependencies": {
     "axios": "^0.16.1",
     "babel-preset-stage-1": "^6.24.1",

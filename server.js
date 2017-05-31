@@ -15,6 +15,7 @@ require('dotenv').config();
 // mongoose.connect('mongodb://localhost:bookBarter/bookDb');
 mongoose.connect('mongodb://andrei:12345@ds157571.mlab.com:57571/book_barter');
 
+// app.use(favicon(path.join( __dirname, 'dist/img', 'favicon.ico')));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -22,7 +23,6 @@ app.use(bodyParser.json());
 // app.use(morgan('combined'));
 app.use(cors());
 app.use(express.static('dist'));
-// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
