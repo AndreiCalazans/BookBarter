@@ -43,7 +43,10 @@ export function authUser(userInfo) {
 
 export function signoutUser() {
     localStorage.removeItem('user');
-     return { type: UNAUTH_USER}
+    return function(dispatch) {
+        dispatch(alertMsg('You are signed out!'));
+        return { type: UNAUTH_USER}
+    }
 }
 
 export function signupUser({email , password , name , address, city , state , country }) {
