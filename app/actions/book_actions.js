@@ -22,7 +22,7 @@ export function getBooks() {
                 });
             })
             .catch((res) => {
-                dispatch(alertMsg('Error with fetching books'))
+                dispatch(alertMsg('Error with fetching all books'))
             })
     }
 };
@@ -182,7 +182,7 @@ export function getBooksOnTrade() {
                 return dispatch(booksOnTrade(res.data));
             })
             .catch((res) => {
-                return dispatch(alertMsg(res.data));
+                // return dispatch(alertMsg(res.data));
             });
     }
 }

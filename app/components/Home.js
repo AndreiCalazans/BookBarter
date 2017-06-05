@@ -20,6 +20,10 @@ class Home extends React.Component {
                 
             <Books display='home'/>    
            </div>
+           <hr/>
+        <footer>
+            <p>Made by <a target='_blank' href="http://www.andrei-calazans.com/">Andrei Calazans</a></p>
+        </footer>
         </div>
         )
     }

@@ -44,8 +44,9 @@ export function authUser(userInfo) {
 export function signoutUser() {
     localStorage.removeItem('user');
     return function(dispatch) {
+        dispatch({ type: UNAUTH_USER});
         dispatch(alertMsg('You are signed out!'));
-        return { type: UNAUTH_USER}
+        history.push('/');
     }
 }
 

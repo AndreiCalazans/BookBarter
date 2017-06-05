@@ -3,7 +3,7 @@ import BookHolder from './stateless/BookHolder';
 import {connect } from 'react-redux';
 import * as actions from '../actions/book_actions';
 import {NavLink } from 'react-router-dom';
-
+import history from '../history';
 class Books extends React.Component {
     constructor(props) {
         super(props);
@@ -47,6 +47,15 @@ class Books extends React.Component {
         this.props.acceptTrade(tradeId);
     }
 
+    handleRequest(info) {
+        if(this.props.auth.authenticated) {
+            this.props.requestTrade(info);
+        } else {
+            history.push('/signin');
+            this.props.alertMsg("Please Log In!");
+        }
+    }
+
     render() {
         // get all the books by mapping  ....
             const allBooks = this.props.handleBooks.books ?  this.props.handleBooks.books.map((e , i) => {
@@ -62,7 +71,7 @@ class Books extends React.Component {
                 currentUser={currentUser}
                 delete={this.deleteBook.bind(this)}
                 authed={this.props.auth.authenticated}
-                handleRequest={this.props.requestTrade}
+                handleRequest={this.handleRequest.bind(this)}
                 />
         }): null;
 
@@ -84,7 +93,7 @@ class Books extends React.Component {
                 currentUser={currentUser}
                 delete={this.deleteBook.bind(this)}
                 authed={this.props.auth.authenticated}
-                handleRequest={this.props.requestTrade}
+                handleRequest={this.handleRequest.bind(this)}
                 handleDeleteOfTrade={this.props.deleteTrade.bind(this)}
                 handleAcceptTrade={this.props.acceptTrade.bind(this)}
                 />
@@ -102,9 +111,15 @@ class Books extends React.Component {
                     :
                     <div className="nav_filter">
                         <p ref='all' onClick={() => { this.changeFilter('all')}} className='filter_active'>All</p>
-                        <p ref='trades' onClick={() => { this.changeFilter('trades')}}>Your Trades <span className="badge">{this.props.trades.length}</span></p>
+                        {
+                            this.props.auth.authenticated ?
+                            <p ref='trades' onClick={() => { this.changeFilter('trades')}}>Your Trades <span className="badge">{this.props.trades.length}</span></p>
+                            :
+                            null
+                        }
                     </div>
                 }
+
 
                 {this.state.filterToShow === 'all' ?  
                     <div className=" book_container">

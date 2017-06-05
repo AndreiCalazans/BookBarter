@@ -109,8 +109,9 @@
   min-width: 200px;
   z-index: 500;
   font-weight: bold;
-  background: rgba(245, 107, 107, 0.9);
+  background: rgba(128, 126, 126, 0.9);
   right: 20px;
+  color: white;
   top: 20px; }
   .alert_msg p {
     text-align: center;
@@ -151,3 +152,25 @@ html {
 .highlighted {
   color: red;
   font-weight: bold; }
+
+footer {
+  text-align: center;
+  padding: 20px; }
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select:focus,
+textarea {
+  font-size: 16px; }

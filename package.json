@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "dev": "webpack -w",
+    "dev": "webpack -w -d",
     "build": "NODE_ENV='production' webpack"
   },
   "keywords": [],
